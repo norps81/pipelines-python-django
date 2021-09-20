@@ -12,7 +12,7 @@ steps:
     architecture: 'x64'
 
 - task: PythonScript@0
-  displayName: 'Export project path'
+  displayName: 'TASK 1 Export project path'
   inputs:
     scriptSource: 'inline'
     script: |
@@ -31,13 +31,13 @@ steps:
     python -m pip install --upgrade pip setuptools wheel django
     pip install -r requirements.txt
     pip install unittest-xml-reporting
-  displayName: 'Install prerequisites'
+  displayName: 'TASK 2 Install prerequisites'
 
 - script: |
     pushd '$(projectRoot)'
     python manage.py test --testrunner xmlrunner.extra.djangotestrunner.XMLTestRunner --no-input
   condition: succeededOrFailed()
-  displayName: 'Run tests'
+  displayName: 'TASK 3 Run tests'
 
 - task: PublishTestResults@2
   condition: succeededOrFailed()
